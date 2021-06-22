@@ -1,9 +1,11 @@
 import express from "express"
+import reflect_metada from "reflect-metadata"
 const app = express()
 const port = 5050
 
 app.get("/", (req, res) => {
-    res.json({ message: "Starting my project!" })
+    return res.json({ message: "Starting my project!" })
+    
 })
 
 app.listen(port, () => {
