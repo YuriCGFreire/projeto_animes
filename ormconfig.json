@@ -14,7 +14,7 @@
        "src/migrations/**/*.ts"
     ],
     "cli":{
-        "migrarionsDir": "src/migrations",
+        "migrationsDir": "src/migrations",
         "entitiesDir": "src/entities"
     }
  }
