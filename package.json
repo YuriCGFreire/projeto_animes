@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/YuriCGFreire/projeto_animes#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "express": "^4.17.1",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
@@ -26,6 +27,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/bcrypt-nodejs": "0.0.31",
     "@types/express": "^4.17.12",
     "@types/node": "^15.12.4",
     "@types/uuid": "^8.3.0",

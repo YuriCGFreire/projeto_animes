@@ -2,6 +2,14 @@ import { getCustomRepository, Repository } from "typeorm"
 import {UserRepository} from "../repositories/UserRepository"
 import {User} from "../models/User"
 
+
+interface IUserCreate{
+    name: string,
+    email: string,
+    admin: boolean,
+    password: string
+}
+
 class UsersService {
     private usersRepository: Repository<User>
 
@@ -9,10 +17,11 @@ class UsersService {
         this.usersRepository = getCustomRepository(UserRepository)
     }
 
-    async create(name: string, email:string, admin: boolean, password: string){
+    async create({name, email, admin, password}: IUserCreate){
         const userExists = await this.usersRepository.findOne({ email })
         if(userExists){
-            return userExists
+            const msg = `Usuário ${name} já cadastrado`
+            return msg
         }
 
         const user = this.usersRepository.create({
@@ -23,7 +32,7 @@ class UsersService {
         })
 
         await this.usersRepository.save(user)
-        return {name, email}
+        return user 
     }
 
     async findByEmail(email: string){
