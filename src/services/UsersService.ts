@@ -20,7 +20,7 @@ class UsersService {
     async create({name, email, admin, password}: IUserCreate){
         const userExists = await this.usersRepository.findOne({ email })
         if(userExists){
-            const msg = `Usuário ${name} já cadastrado`
+            const msg = `Usuário já cadastrado.`
             return msg
         }
 

@@ -5,28 +5,24 @@ import {Validation} from "./Validation"
 
 class UsersConrtoller {
     async create(req: Request, res: Response): Promise<Response>{
-
-        const encyrptPassword = (password: string) => {
-            const salt = genSaltSync(21)
+        const {name, email, admin, bodyPassword, bodyConfirmPassword} = req.body
+        const usersService = new UsersService()
+        const validation = new Validation()
+        const encryptPassword = (password: string) => {
+            const salt = genSaltSync(10)
             return hashSync(password, salt)
         }
-
+        const password = encryptPassword(bodyPassword)
         try{
-            const {name, email, admin, bodyPassword, bodyConfirmPassword} = req.body
-            const validation = new Validation()
-
-            validation.existsOrError(name, "Nome inválido")
-            validation.existsOrError(email, "E-mail inválido")
-            validation.existsOrError(bodyPassword, "Senha inválida")
-            validation.existsOrError(bodyConfirmPassword, "Confirmação de senha inválida")
+            validation.existsOrError(name, "Nome inválido.")
+            validation.existsOrError(email, "Email inválido.")
+            validation.existsOrError(bodyPassword, "Senha inválida.")
+            validation.existsOrError(bodyConfirmPassword, "Confirmação de senha inválida.")
             validation.equalsOrError(bodyPassword, bodyConfirmPassword, "Senhas não conferem")
-
-            const password = encyrptPassword(bodyPassword)
-            const usersService = new UsersService()
             const user = await usersService.create({name, email, admin, password})
             return res.json({user})
         }catch(err){
-            console.log(`Err: ${err.message}`)
+            res.json({"Erro": err})
         }
     }
 }
