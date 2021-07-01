@@ -31,6 +31,10 @@ export class CreatePost1624471606346 implements MigrationInterface {
                     type: "int"
                 },
                 {
+                    name: "user_id",
+                    type: "uuid"
+                },
+                {
                     name: "created_at",
                     type: "timestamp",
                     default: "now()"
@@ -39,6 +43,16 @@ export class CreatePost1624471606346 implements MigrationInterface {
                     name: "updated_at",
                     type: "timestamp",
                     default: "now()"
+                }
+            ],
+            foreignKeys: [
+                {
+                    name: "FKUser",
+                    referencedTableName:"users",
+                    referencedColumnNames:["id"],
+                    columnNames: ["user_id"],
+                    onDelete: "SET NULL",
+                    onUpdate: "SET NULL"
                 }
             ]
         }))

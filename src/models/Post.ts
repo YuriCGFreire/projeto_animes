@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from "typeorm"
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from "typeorm"
 import {User} from "./User"
 import {v4 as uuid} from "uuid"
 
@@ -13,8 +13,12 @@ export class Post {
     @Column()
     content: Text;
 
+    @JoinColumn({ name: "user_id" })
     @ManyToOne(type => User, type => Post)
     user: User;
+
+    @Column()
+    user_id: string;
 
     @Column()
     like: number;
