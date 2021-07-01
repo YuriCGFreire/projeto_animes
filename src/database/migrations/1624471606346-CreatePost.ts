@@ -23,20 +23,11 @@ export class CreatePost1624471606346 implements MigrationInterface {
                     isNullable: false
                 },
                 {
-                    name: "author_id",
-                    type: "uuid",
-                    isNullable: false,
-                },
-                {
                     name: "like",
                     type: "int"
                 },
                 {
                     name: "dislike",
-                    type: "int"
-                },
-                {
-                    name: "middle_finger",
                     type: "int"
                 },
                 {

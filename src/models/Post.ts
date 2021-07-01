@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column, ManyToOne } from "typeorm"
+import {User} from "./User"
 import {v4 as uuid} from "uuid"
 
 @Entity("posts")
@@ -12,17 +13,14 @@ export class Post {
     @Column()
     content: Text;
 
-    @Column()
-    author_id: string;
+    @ManyToOne(type => User, type => Post)
+    user: User;
 
     @Column()
     like: number;
 
     @Column()
     dislike: number;
-
-    @Column()
-    middle_finger: number;
 
     @Column()
     created_at: Date;
