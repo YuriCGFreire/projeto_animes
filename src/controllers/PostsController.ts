@@ -17,7 +17,7 @@ export class PostsController {
         }
     }
 
-    async finPostById(req: Request, res: Response): Promise<Response>{
+    async findPostById(req: Request, res: Response): Promise<Response>{
         const { id } = req.params
         const postsService = new PostsService()
         try{
