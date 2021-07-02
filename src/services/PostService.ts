@@ -17,11 +17,13 @@ export class PostsService {
         this.postRepository = getCustomRepository(PostRepository)
     }
 
-    async create({title, content, user_id}: IPostCreate){
+    async create({title, content, user_id, like, dislike}: IPostCreate){
         const post = this.postRepository.create({
             title,
             content,
-            user_id
+            user_id,
+            like,
+            dislike
         })
 
         await this.postRepository.save(post)

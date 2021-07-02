@@ -21,10 +21,10 @@ export class Post {
     user_id: string;
 
     @Column()
-    like: number;
+    like?: number;
 
     @Column()
-    dislike: number;
+    dislike?: number;
 
     @Column()
     created_at: Date;
