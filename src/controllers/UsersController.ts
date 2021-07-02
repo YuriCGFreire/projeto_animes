@@ -5,7 +5,7 @@ import {Validation} from "./Validation"
 
 class UsersConrtoller {
     async create(req: Request, res: Response): Promise<Response>{
-        const {name, email, admin, bodyPassword, bodyConfirmPassword} = req.body
+        var {name, email, admin, bodyPassword, bodyConfirmPassword} = req.body
         const usersService = new UsersService()
         const validation = new Validation()
         const encryptPassword = (password: string) => {
@@ -13,6 +13,9 @@ class UsersConrtoller {
             return hashSync(password, salt)
         }
         const password = encryptPassword(bodyPassword)
+        if(!admin){
+            admin = false
+        }
         try{
             validation.existsOrError(name, "Nome inválido.")
             validation.existsOrError(email, "Email inválido.")
