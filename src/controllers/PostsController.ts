@@ -4,7 +4,7 @@ import { Validation } from "./Validation"
 
 export class PostsController {
     async create(req: Request, res: Response): Promise<Response>{
-        const { title, content, user_id } = req.body
+        const { title, content, user_id, like = 0, dislike = 0 } = req.body
         const postsService = new PostsService()
         const validation = new Validation()
         try{
