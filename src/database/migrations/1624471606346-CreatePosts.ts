@@ -19,7 +19,7 @@ export class CreatePost1624471606346 implements MigrationInterface {
                 },
                 {
                     name: "content",
-                    type: "varchar",
+                    type: "text",
                     isNullable: false
                 },
                 {
