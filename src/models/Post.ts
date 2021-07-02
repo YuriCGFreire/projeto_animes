@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from "typeorm"
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm"
 import {User} from "./User"
 import {v4 as uuid} from "uuid"
 
@@ -21,20 +21,25 @@ export class Post {
     user_id: string;
 
     @Column()
-    like?: number;
+    like: number;
 
     @Column()
-    dislike?: number;
+    dislike: number;
 
-    @Column()
+    @CreateDateColumn()
     created_at: Date;
 
-    @Column()
+    @CreateDateColumn()
     updated_at: Date;
 
     constructor(){
         if(!this.id){
             this.id = uuid();
+        }
+
+        if(this.like == null && this.dislike == null){
+            this.like = 0
+            this.dislike = 0
         }
     }
 }

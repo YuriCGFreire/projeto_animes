@@ -24,17 +24,17 @@ export class CreatePost1624471606346 implements MigrationInterface {
                 },
                 {
                     name: "like",
-                    type: "int"
+                    type: "int",
+                    default: 0
                 },
                 {
                     name: "dislike",
                     type: "int",
-                    isNullable: true
+                    default: 0
                 },
                 {
                     name: "user_id",
-                    type: "uuid",
-                    isNullable: true
+                    type: "uuid"
                 },
                 {
                     name: "created_at",

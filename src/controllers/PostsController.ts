@@ -4,13 +4,13 @@ import { Validation } from "./Validation"
 
 export class PostsController {
     async create(req: Request, res: Response): Promise<Response>{
-        const { title, content, user_id, like = 0, dislike = 0 } = req.body
+        const { title, content, user_id, like, dislike} = req.body
         const postsService = new PostsService()
         const validation = new Validation()
         try{
             validation.existsOrError(title, "Titulo não informado.")
             validation.existsOrError(content, "Conteúdo não informado.")
-            const post = await postsService.create({title, content, user_id})
+            const post = await postsService.create({title, content, user_id, like, dislike})
             return res.json({post})
         }catch(err){
             res.json({"Erro: ": err})
