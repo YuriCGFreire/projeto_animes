@@ -10,8 +10,8 @@ export class Post {
     @Column()
     title: string;
 
-    @Column()
-    content: Text;
+    @Column({ type: "text" })
+    content: string;
 
     @JoinColumn({ name: "user_id" })
     @ManyToOne(type => User, type => Post)
