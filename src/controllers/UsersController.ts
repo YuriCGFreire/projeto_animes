@@ -25,6 +25,20 @@ class UsersConrtoller {
             res.json({"Erro": err})
         }
     }
+
+    async findByEmail(req: Request, res: Response): Promise<Response>{
+        const { email } = req.params
+        const usersService = new UsersService()
+        try{
+            const user = await usersService.findByEmail(email)
+            return res.json({"User: ": {
+                "Name": user.name,
+                "Email": user.email
+            }})
+        }catch(err){
+            res.json(err.message)
+        }
+    }
 }
 
 export {UsersConrtoller}
