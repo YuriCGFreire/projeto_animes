@@ -57,5 +57,18 @@ export class PostsService {
         return updatedLike
     }
 
-    async oneLes
+    async oneLessLike(id: string){
+        const post = await this.postRepository.findOne({id})
+
+        const updatedLike =await this.postRepository.save({
+                id: id,
+                like: post.like - 1,
+                dislike: post.dislike,
+                title: post.title,
+                content: post.content,
+                user_id: post.user_id
+            }) 
+
+        return updatedLike
+    }
 }
