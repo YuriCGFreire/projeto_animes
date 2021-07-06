@@ -49,4 +49,15 @@ export class PostsController {
             res.json({"Erro: ": err.message})
         }
     }
+
+    async oneLessLike(req: Request, res: Response): Promise<Response>{
+        const {id} = req.params
+        const postsService = new PostsService()
+        try{
+            const post = await postsService.oneMorelike(id)
+            return res.json(post)
+        }catch(err){
+            res.json({"Erro: ": err.message})
+        }
+    }
 }
