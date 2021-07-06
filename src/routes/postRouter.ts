@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { PostsController } from "../controllers/PostsController";
-const postRouter = Router()
-const postController = new PostsController()
+const postRouter = Router();
+const postController = new PostsController();
 
-postRouter.post('/', postController.create)
-postRouter.get('/', postController.findPostById)
+postRouter.post('/', postController.create);
+postRouter.get('/:id', postController.findPostById);
+postRouter.get('/user/:id', postController.findPostsByUserId);
 
-export {postRouter}
+
+export {postRouter};
