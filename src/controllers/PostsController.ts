@@ -27,4 +27,15 @@ export class PostsController {
             res.json({"Erro: ": err})
         }
     }
+
+    async findPostsByUserId(req: Request, res: Response): Promise<Response>{
+        const {id} = req.params
+        try{
+            const postsService = new PostsService()
+            const posts = await postsService.findPostsByUserId(id)
+            return res.json(posts)
+        }catch(err){
+            res.json(err.message)
+        }
+    }
 }

@@ -31,7 +31,14 @@ export class PostsService {
     }
 
     async findPostById(id: string){
-        const post = this.postRepository.find({id})
+        const post = await this.postRepository.find({id})
         return post
+    }
+
+    async findPostsByUserId(user_id: string){
+        const posts = await this.postRepository.find({
+            where: {user_id}
+        })
+        return posts
     }
 }
