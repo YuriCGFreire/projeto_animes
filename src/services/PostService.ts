@@ -1,6 +1,6 @@
-import { getCustomRepository, Repository } from "typeorm"
+import { getCustomRepository, Repository} from "typeorm"
 import { PostRepository } from "../repositories/PostRepository"
-import { Post } from "../models/Post"
+import {Post} from "../models/Post"
 
 interface IPostCreate{
     title: string,
@@ -41,4 +41,21 @@ export class PostsService {
         })
         return posts
     }
+
+    async oneMorelikePost(id: string){
+        const post = await this.postRepository.findOne({id})
+
+        const updatedLike =await this.postRepository.save({
+                id: id,
+                like: post.like + 1,
+                dislike: post.dislike,
+                title: post.title,
+                content: post.content,
+                user_id: post.user_id
+            }) 
+
+        return updatedLike
+    }
+
+    async oneLes
 }
