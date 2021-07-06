@@ -42,7 +42,7 @@ export class PostsService {
         return posts
     }
 
-    async oneMorelikePost(id: string){
+    async oneMorelike(id: string){
         const post = await this.postRepository.findOne({id})
 
         const updatedLike =await this.postRepository.save({
