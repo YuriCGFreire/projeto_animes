@@ -6,6 +6,7 @@ const postController = new PostsController();
 postRouter.post('/', postController.create);
 postRouter.get('/:id', postController.findPostById);
 postRouter.get('/user/:id', postController.findPostsByUserId);
+postRouter.put('/like/:id', postController.oneMorelike)
 
 
 export {postRouter};
