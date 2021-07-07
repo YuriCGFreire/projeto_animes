@@ -39,7 +39,7 @@ export class PostsController {
         }
     }
 
-    async oneMorelike(req: Request, res: Response): Promise<Response>{
+    async oneMorelike(req: Request, res: Response): Promise<Response>{ //Para teste
         const {id} = req.params
         const postsService = new PostsService()
         try{
@@ -50,11 +50,33 @@ export class PostsController {
         }
     }
 
-    async oneLessLike(req: Request, res: Response): Promise<Response>{
+    async oneLessLike(req: Request, res: Response): Promise<Response>{ //Para teste
         const {id} = req.params
         const postsService = new PostsService()
         try{
-            const post = await postsService.oneMorelike(id)
+            const post = await postsService.oneLessLike(id)
+            return res.json(post)
+        }catch(err){
+            res.json({"Erro: ": err.message})
+        }
+    }
+
+    async oneMoreDislike(req: Request, res: Response): Promise<Response>{ //Para teste
+        const {id} = req.params
+        const postsService = new PostsService()
+        try{
+            const post = await postsService.oneMoreDislike(id)
+            return res.json(post)
+        }catch(err){
+            res.json({"Erro: ": err.message})
+        }
+    }
+
+    async oneLessDislike(req: Request, res: Response): Promise<Response>{ //Para teste
+        const {id} = req.params
+        const postsService = new PostsService()
+        try{
+            const post = await postsService.oneLessDislike(id)
             return res.json(post)
         }catch(err){
             res.json({"Erro: ": err.message})
