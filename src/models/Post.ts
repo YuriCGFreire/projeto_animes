@@ -36,10 +36,5 @@ export class Post {
         if(!this.id){
             this.id = uuid();
         }
-
-        if(this.like == null && this.dislike == null){
-            this.like = 0
-            this.dislike = 0
-        }
     }
 }
