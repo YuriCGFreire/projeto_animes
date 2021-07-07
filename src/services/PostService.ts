@@ -75,7 +75,7 @@ export class PostsService {
     async oneMoreDislike(id: string){
         const post = await this.postRepository.findOne({id})
 
-        const updatedLike =await this.postRepository.save({
+        const updatedDislike =await this.postRepository.save({
                 id: id,
                 like: post.like,
                 dislike: post.dislike + 1,
@@ -84,13 +84,13 @@ export class PostsService {
                 user_id: post.user_id
             }) 
 
-        return updatedLike
+        return updatedDislike
     }
 
     async oneLessDislike(id: string){
         const post = await this.postRepository.findOne({id})
         
-        const updatedLike =await this.postRepository.save({
+        const updatedDislike =await this.postRepository.save({
                 id: id,
                 like: post.like,
                 dislike: post.dislike - 1,
@@ -99,7 +99,7 @@ export class PostsService {
                 user_id: post.user_id
             }) 
 
-        return updatedLike
+        return updatedDislike
     }
 
 }
