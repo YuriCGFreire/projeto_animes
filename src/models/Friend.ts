@@ -1,4 +1,4 @@
-import {Entity, PrimaryColumn, Column, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn} from "typeorm"
+import {Entity, PrimaryColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, JoinColumn} from "typeorm"
 import {v4 as uuid} from "uuid"
 import { User } from "./User"
 
@@ -8,9 +8,9 @@ export class Friend {
     @PrimaryColumn()
     id: string;
 
-    @ManyToMany(() => User)
-    @JoinTable()
-    user_requester: User[];
+    @JoinColumn([{name: "user_id_requester"}, {name: "user_id_requested"}])
+    @ManyToOne(type => User, type => Friend)
+    user: User;
 
     @Column()
     user_id_requester: string;
