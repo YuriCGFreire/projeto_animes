@@ -2,7 +2,7 @@ import {Entity, PrimaryColumn, Column, ManyToOne, CreateDateColumn, UpdateDateCo
 import {v4 as uuid} from "uuid"
 import { User } from "./User"
 
-@Entity()
+@Entity('friends')
 export class Friend {
 
     @PrimaryColumn()
@@ -12,11 +12,17 @@ export class Friend {
     @ManyToOne(type => User, type => Friend)
     user: User;
 
-    @Column()
+    @Column({type: "uuid"})
     user_id_requester: string;
 
-    @Column()
+    @Column({type: "uuid"})
     user_id_requested: string;
+
+    @Column({type: "varchar"})
+    status: string;
+
+    @Column({type: "boolean"})
+    active: boolean;
 
     @CreateDateColumn()
     created_at: Date;
