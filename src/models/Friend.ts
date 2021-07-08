@@ -34,5 +34,8 @@ export class Friend {
         if(!this.id){
             this.id = uuid();
         }
+
+        this.active = false
+        this.status = "pendente"
     }
 }
