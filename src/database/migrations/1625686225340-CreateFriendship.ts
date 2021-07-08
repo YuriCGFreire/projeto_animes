@@ -21,6 +21,15 @@ export class CreateFriendship1625686225340 implements MigrationInterface {
                     type: "uuid"
                 },
                 {
+                    name: "status",
+                    type: "varchar"
+                },
+                {
+                    name: "active",
+                    type: "boolean",
+                    default: "false"
+                },
+                {
                     name: "created_at",
                     type: "timestamp",
                     default: 'now()'
@@ -34,18 +43,18 @@ export class CreateFriendship1625686225340 implements MigrationInterface {
         }))
 
         await queryRunner.createForeignKey("friends", new TableForeignKey({
-            columnNames: ["user_id_requester"],
-            referencedColumnNames: ["id"],
+            columnNames: ['user_id_requester'],
+            referencedColumnNames: ['id'],
             referencedTableName: "users",
             onDelete: "CASCADE"
-        }));
+        }))
 
         await queryRunner.createForeignKey("friends", new TableForeignKey({
-            columnNames: ["user_id_requested"],
-            referencedColumnNames: ["id"],
+            columnNames: ['user_id_requested'],
+            referencedColumnNames: ['id'],
             referencedTableName: "users",
             onDelete: "CASCADE"
-        }));
+        }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
