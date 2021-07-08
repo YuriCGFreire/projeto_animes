@@ -33,7 +33,8 @@ class UsersConrtoller {
             const user = await usersService.findByEmail(email)
             return res.json({"User: ": {
                 "Name": user.name,
-                "Email": user.email
+                "Email": user.email,
+                "User_id": user.id
             }})
         }catch(err){
             res.json(err.message)
