@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import { PostsService } from "../services/PostService"
+import { PostsService } from "../services/PostsService"
 import { Validation } from "./Validation"
 
 export class PostsController {
