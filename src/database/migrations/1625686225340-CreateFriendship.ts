@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreateFriendship1625686225340 implements MigrationInterface {
 
@@ -30,27 +30,22 @@ export class CreateFriendship1625686225340 implements MigrationInterface {
                     type: "timestamp",
                     default: "now()"
                 }
-            ],
-            foreignKeys: [
-                {
-                    name: "FKUser",
-                    referencedTableName:"users",
-                    referencedColumnNames:["id"],
-                    columnNames: ["user_id_requester"],
-                    onDelete: "SET NULL",
-                    onUpdate: "SET NULL"
-                },
-                {
-                    name: "FKUser",
-                    referencedTableName:"users",
-                    referencedColumnNames:["id"],
-                    columnNames: ["user_id_requested"],
-                    onDelete: "SET NULL",
-                    onUpdate: "SET NULL"
-                }
             ]
-
         }))
+
+        await queryRunner.createForeignKey("friends", new TableForeignKey({
+            columnNames: ["user_id_requester"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "users",
+            onDelete: "CASCADE"
+        }));
+
+        await queryRunner.createForeignKey("friends", new TableForeignKey({
+            columnNames: ["user_id_requested"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "users",
+            onDelete: "CASCADE"
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
