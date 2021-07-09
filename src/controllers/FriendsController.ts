@@ -14,4 +14,15 @@ export class FriendsController {
         }
     }
 
+    async getPendentRequests(req: Request, res: Response): Promise<Response>{
+        const { user_id } = req.body
+        const friendsService = new FriendsService()
+        try{
+            const requests = await friendsService.getPendetRequests(user_id)
+            return res.json(requests)
+        }catch(err){
+            res.json({"Erro: ": err.message})
+        }
+    }
+
 }
