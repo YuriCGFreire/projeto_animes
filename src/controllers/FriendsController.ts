@@ -26,7 +26,7 @@ export class FriendsController {
     }
 
     async getPendentRequests(req: Request, res: Response): Promise<Response>{
-        const { user_id } = req.body
+        const { user_id } = req.params
         const friendsService = new FriendsService()
         try{
             const requests = await friendsService.getPendetRequests(user_id)
