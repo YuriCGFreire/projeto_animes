@@ -15,10 +15,10 @@ export class FriendsController {
     }
 
     async acceptedOrRefused(req: Request, res: Response): Promise<Response>{
-        const {status, id_request, id_requester, id_requested} = req.body
+        const {status, id_request} = req.body
         const friendsService = new FriendsService()
         try{
-            const request = await friendsService.acceptedOrRefused(status, id_request, id_requester, id_requested)
+            const request = await friendsService.acceptedOrRefused(status, id_request)
             return res.json(request)
         }catch(err){
             res.json({"Erro: ": err.message})
