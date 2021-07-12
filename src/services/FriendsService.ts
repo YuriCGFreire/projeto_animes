@@ -49,4 +49,15 @@ export class FriendsService {
         return requests
     }
 
+    async getFriends(user_id: string){
+        const friends = await this.friendRepository.find({
+            where: {
+                user_id: user_id,
+                active: true
+            }
+        })
+
+        return friends
+    }
+
 }
