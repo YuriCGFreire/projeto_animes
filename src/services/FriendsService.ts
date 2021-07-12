@@ -25,17 +25,18 @@ export class FriendsService {
         const request = await this.friendRepository.findOne({id})
 
         if(status == "aceito"){
-            await this.friendRepository.save({
-                active: true
-            })
+            await this.friendRepository.update(
+                {id: request.id},
+                {active: true}
+            )
         }
 
-        const updatedRequest = await this.friendRepository.update(
+        await this.friendRepository.update(
             {id: request.id},
             {status: status}
         )
 
-        return request
+        return request.status
     }
 
     async getPendetRequests(user_id_requested:string){
