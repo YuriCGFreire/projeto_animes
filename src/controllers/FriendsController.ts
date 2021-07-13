@@ -36,4 +36,15 @@ export class FriendsController {
         }
     }
 
+    async getFriends(req: Request, res: Response): Promise<Response>{
+        const {user_id} = req.body
+        const friendsService = new FriendsService()
+        try{
+            const friends = await friendsService.getFriends(user_id)
+            return res.json(friends)
+        }catch(err){
+            res.json({"Erro: ": err.message})
+        }
+    }
+
 }
