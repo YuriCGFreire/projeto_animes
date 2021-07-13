@@ -21,6 +21,11 @@ export class CreateComents1626201523147 implements MigrationInterface {
                     type: "uuid"
                 },
                 {
+                    name: "content",
+                    type: "varchar",
+                    isNullable: false
+                },
+                {
                     name: "created_at",
                     type: "timestamp",
                     default: "now()"
